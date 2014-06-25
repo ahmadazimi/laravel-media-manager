@@ -2,6 +2,8 @@
     "name": "ahmadazimi/laravel-media-manager",
 	"description": "Laravel 4 advanced media manager based on elFinder 2.",
 	"keywords": ["laravel", "elfinder", "media-manager", "uploader"],
+	"homepage": "https://github.com/ahmadazimi/laravel-media-manager",
+	"time": "2012-06-25",
 	"license": "MIT",
 	"repositories": {
 		"jDateTime": {
@@ -20,15 +22,24 @@
 	},
 	"require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.x",
+        "illuminate/support": "4.x"
+    },
+	"require-dev": {
 		"Studio-42/elFinder": "dev-master"
     },
     "authors": [
         {
             "name": "Ahmad Azimi",
-            "email": "a2azimi@gmail.com"
+            "email": "a2azimi@gmail.com",
+			"homepage": "http://ahmadazimi.name",
+			"role": "Developer"
         }
     ],
+	"support": {
+        "email": "a2azimi@gmail.com",
+        "issues": "https://github.com/ahmadazimi/laravel-media-manager/issues",
+        "source": "https://github.com/ahmadazimi/laravel-media-manager"
+    },
 	"scripts": {
         "post-install-cmd": [
             "npm install",
