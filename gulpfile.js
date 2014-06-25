@@ -38,12 +38,9 @@ gulp.task('public', function() {
 //////////////////////////////////////////////////
 
 gulp.task('js:watch', function () {
-  gulp.watch(paths.app.assets + '/js/**/*.js', ['js:pub']);
+  gulp.watch('/js/**/*.js', ['default']);
 });
 
-gulp.task('less:watch', function () {
-  gulp.watch(paths.app.assets + '/less/**/*.less', ['css:pub']);
-});
 
 //////////////////////////////////////////////////
 // CLEAN Tasks
