@@ -39,7 +39,14 @@
                 <?php if($locale){ ?>
                     lang: '<?= $locale ?>', // locale
                 <?php } ?>
-                url: '<?= URL::action('Barryvdh\Elfinder\ElfinderController@showConnector') ?>',  // connector URL
+                url : '<?= URL::action('W3G\MediaManager\MediaManagerController@connector') ?>',  // connector URL
+				customData: {
+                    _token: '<?= csrf_token() ?>'
+                },
+                customHeaders: {
+                    'X-CSRF-Token': '<?= csrf_token() ?>'
+                },
+                requestType: 'post',
                 getFileCallback : function(file) {
                     window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
                     window.close();
