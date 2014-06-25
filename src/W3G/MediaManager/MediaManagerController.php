@@ -46,7 +46,7 @@ class MediaManagerController extends \BaseController {
 	 *
 	 * @see https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
 	 */
-	public function showConnector() {
+	public function connector() {
 		$locale = $this->getLocale();
 		$roots = Config::get($this->package . '::roots');
 		$upload_dir = Config::get($this->package . '::upload_dir');
