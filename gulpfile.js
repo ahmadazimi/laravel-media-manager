@@ -28,7 +28,7 @@ gulp.task('extra', function() {
 gulp.task('public', function() {
   return gulp.src([
     'build/{js,css,img}/**/*',
-	'build/elfinder.html'
+	'build/{elfinder.html,Changelog,README.md}'
   ])
     .pipe(gulp.dest('public'));
 });
