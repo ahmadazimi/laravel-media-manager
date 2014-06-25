@@ -1,0 +1,6 @@
+# Packages
+/vendor
+/node_modules
+/build
+
+composer.lock

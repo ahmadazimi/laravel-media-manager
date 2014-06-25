@@ -1,0 +1,33 @@
+{
+  "name": "laravel-media-manager",
+  "version": "0.1.0",
+  "description": "Laravel 4 advanced media manager based on elFinder 2.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmadazimi/laravel-media-manager.git"
+  },
+  "keywords": [
+    "laravel",
+    "elfinder",
+    "uploader",
+    "media-manager",
+    "file-manager"
+  ],
+  "author": "Ahmad Azimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahmadazimi/laravel-media-manager/issues"
+  },
+  "homepage": "https://github.com/ahmadazimi/laravel-media-manager",
+  "devDependencies": {
+    "csso": "^1.3.11",
+    "gulp": "^3.8.1",
+    "gulp-clean": "^0.3.1",
+    "jake": "^0.7.17",
+    "uglify-js": "^2.4.14"
+  }
+}
