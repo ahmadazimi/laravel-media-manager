@@ -55,8 +55,8 @@ class MediaManagerController extends \BaseController {
 		if (!$roots) {
 			$root = array(
 				'driver' => 'LocalFileSystem', // Driver for accessing file system (REQUIRED)
-				'path' => public_path() . DIRECTORY_SEPARATOR . $dir, // Path to upload directory (REQUIRED)
-				'URL' => asset($dir) , // URL to upload directory (REQUIRED)
+				'path' => public_path() . DIRECTORY_SEPARATOR . $upload_dir, // Path to upload directory (REQUIRED)
+				'URL' => asset($upload_dir) , // URL to upload directory (REQUIRED)
 				'accessControl' => $accessControlCallback, // Filter callback (OPTIONAL)
 			);
 			

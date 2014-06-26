@@ -1,30 +1,32 @@
 <?php
 
-return array(
+/**
+ * MediaManager configuration file.
+ */
 
-    'upload_dir' => 'media',
+return array(
 	
-	'customData' => array(),
+	'upload_dir' => 'media',
 	
-	'customHeaders' => array(),
+	'customData' => array() ,
 	
+	'customHeaders' => array() ,
 	/*
 	|----------------------------------------------------------------
-    | AccessControl
-    |----------------------------------------------------------------
+	| AccessControl
+	|----------------------------------------------------------------
 	|
 	| Function or class instance method to control files permissions.
 	| 
 	| https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options#wiki-accessControl
 	|
 	*/
-    'accessControllCallback' => 'W3G\Elfinder\MediaManager::checkAccess',
-	
+	'accessControllCallback' => 'W3G\Elfinder\MediaManager::accessControll',
 	/*
-    |----------------------------------------------------------------
-    | Roots
-    |----------------------------------------------------------------
-    | 
+	|----------------------------------------------------------------
+	| Roots
+	|----------------------------------------------------------------
+	| 
 	| If you don't pass roots property, or pass null to it, the root
 	| file will be LocalFileSystem with the above public upload_dir.
 	| 
@@ -33,8 +35,7 @@ return array(
 	|
 	| For more information see
 	| https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
-    |
-    */
-    'roots' => null,
-
+	|
+	*/
+	'roots' => null,
 );

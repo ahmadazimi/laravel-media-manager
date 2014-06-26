@@ -1,65 +1,57 @@
 {
-    "name": "ahmadazimi/laravel-media-manager",
+	"name": "ahmadazimi/laravel-media-manager",
 	"description": "Laravel 4 advanced media manager based on elFinder 2.",
-	"keywords": ["laravel", "elfinder", "media-manager", "uploader"],
+	"keywords": ["laravel", "elfinder", "uploader", "media-manager", "file-manager"],
 	"homepage": "https://github.com/ahmadazimi/laravel-media-manager",
 	"time": "2012-06-25",
 	"license": "MIT",
-	"repositories": {
-		"jDateTime": {
-			"type": "package",
-			"package": {
-				"name": "Studio-42/elFinder",
-				"description": "Jalali DateTime Class for PHP",
-				"version": "dev-master",
-				"source": {
-					"url": "https://github.com/Studio-42/elFinder",
-					"type": "git",
-					"reference": "8be000d529b467a605e097643c3b0181a677a715"
-				}
-			}
-		}
-	},
+
 	"require": {
-        "php": ">=5.3.0",
-        "illuminate/support": "4.x"
-    },
+		"php": ">=5.3.0",
+		"illuminate/support": "4.x"
+	},
+
 	"require-dev": {
 		"Studio-42/elFinder": "dev-master"
-    },
-    "authors": [
-        {
-            "name": "Ahmad Azimi",
-            "email": "a2azimi@gmail.com",
+	},
+
+	"authors": [
+		{
+			"name": "Ahmad Azimi",
+			"email": "a2azimi@gmail.com",
 			"homepage": "http://ahmadazimi.name",
 			"role": "Developer"
-        }
-    ],
+		}
+	],
+
 	"support": {
-        "email": "a2azimi@gmail.com",
-        "issues": "https://github.com/ahmadazimi/laravel-media-manager/issues",
-        "source": "https://github.com/ahmadazimi/laravel-media-manager"
-    },
+		"email": "a2azimi@gmail.com",
+		"issues": "https://github.com/ahmadazimi/laravel-media-manager/issues",
+		"source": "https://github.com/ahmadazimi/laravel-media-manager"
+	},
+
 	"scripts": {
-        "post-install-cmd": [
-            "npm install",
+		"post-install-cmd": [
+			"npm install",
 			"gulp clean",
 			"cd vendor/Studio-42/elFinder && jake -C ./../../../build elfinder",
 			"gulp"
-        ],
-        "post-update-cmd": [
+        		],
+		"post-update-cmd": [
 			"gulp clean",
 			"cd vendor/Studio-42/elFinder && jake -C ./../../../build elfinder",
 			"gulp"
-        ]
-    },
-    "autoload": {
-        "classmap": [
-            "src/core"
-        ],
-        "psr-0": {
-            "W3G\\MediaManager": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+        		]
+	},
+	
+	"autoload": {
+		"classmap": [
+			"src/core"
+		],
+		"psr-0": {
+			"W3G\\MediaManager": "src/"
+		}
+	},
+
+	"minimum-stability": "stable"
 }
