@@ -5,6 +5,22 @@
 	"homepage": "https://github.com/ahmadazimi/laravel-media-manager",
 	"time": "2012-06-25",
 	"license": "MIT",
+	
+	"repositories": {
+		"elFinder": {
+			"type": "package",
+			"package": {
+				"name": "Studio-42/elFinder",
+				"description": "Open-source file manager for web, written in JavaScript using jQuery and jQuery UI",
+				"version": "2.1",
+				"source": {
+					"url": "https://github.com/Studio-42/elFinder.git",
+					"type": "git",
+					"reference": "2d11ac5170b2c21311ce99412cf220d18671df3d"
+				}
+			}
+		}
+	},
 
 	"require": {
 		"php": ">=5.3.0",
@@ -12,7 +28,7 @@
 	},
 
 	"require-dev": {
-		"Studio-42/elFinder": "dev-master"
+		"Studio-42/elFinder": "~2.1"
 	},
 
 	"authors": [

@@ -18,13 +18,6 @@ gulp.task('elfinder', function() {
     .pipe(gulp.dest('src/core'));
 });
 
-gulp.task('extra', function() {
-  return gulp.src([
-    'extra/**/*'
-  ])
-    .pipe(gulp.dest('src/core'));
-});
-
 gulp.task('public', function() {
   return gulp.src([
     'build/{js,css,img}/**/*',
@@ -61,4 +54,4 @@ gulp.task('clean', function () {
 // Default Task
 //////////////////////////////////////////////////
 
-gulp.task('default', ['elfinder', 'extra', 'public']);
+gulp.task('default', ['elfinder', 'public']);
