@@ -1,6 +1,7 @@
 {
 	"name": "ahmadazimi/laravel-media-manager",
-	"description": "Laravel 4 advanced media manager based on elFinder 2.",
+	"description": "Laravel 4 advanced media manager based on elFinder 2.1.",
+	"version": "1.0.1",
 	"keywords": ["laravel", "elfinder", "uploader", "media-manager", "file-manager"],
 	"homepage": "https://github.com/ahmadazimi/laravel-media-manager",
 	"time": "2012-06-25",
