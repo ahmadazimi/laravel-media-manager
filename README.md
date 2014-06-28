@@ -3,8 +3,8 @@ Laravel Media Manager 0.1.0 beta
 
 ### This package is still under development.
 
-Laravel 4 advanced media manager (file manager and uploader) package based on [elFinder 2.1](https://github.com/Studio-42/elFinder/tree/2.1). Note that this package is still under development.
-You can use this file manager in Laravel 4 as a standalone media manager or as a plugin for TinyMCE or CKEditor. For more info take a look at files in `src/views` folder.
+Laravel 4 advanced media manager (file manager and uploader) package based on [elFinder 2.1](https://github.com/Studio-42/elFinder/tree/2.1). Inspired by [laravel-elfinder](https://github.com/barryvdh/laravel-elfinder) package developed by [Barry vd. Heuvel](https://github.com/barryvdh).
+Note that this package is still under development. You can use this file manager in Laravel 4 as a standalone media manager or as a plugin for TinyMCE or CKEditor. For more info take a look at files in `src/views` folder.
 
 ### Installation
 
