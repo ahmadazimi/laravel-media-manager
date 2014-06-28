@@ -1,87 +1,79 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>elFinder 2.0</title>
+	<head>
+		<meta charset="utf-8">
+		<title>Laravel Media Manager (tinymce) based on elFinder 2.1</title>
 
-    <!-- jQuery and jQuery UI (REQUIRED) -->
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+		<!-- jQuery and jQuery UI (REQUIRED) -->
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
-    <!-- elFinder CSS (REQUIRED) -->
-    <link rel="stylesheet" type="text/css" href="<?= asset($dir.'/css/elfinder.min.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?= asset($dir.'/css/theme.css') ?>">
+		<!-- elFinder CSS (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" href="<?=$package_url . '/css/elfinder.min.css' ?>">
+		<link rel="stylesheet" type="text/css" href="<?=$package_url . '/css/theme.css' ?>">
 
-    <!-- elFinder JS (REQUIRED) -->
-    <script src="<?= asset($dir.'/js/elfinder.min.js') ?>"></script>
+		<!-- elFinder JS (REQUIRED) -->
+		<script src="<?=$package_url . '/js/elfinder.min.js' ?>"></script>
 
-    <!-- TinyMCE Popup class (REQUIRED) -->
-    <script type="text/javascript" src="<?= asset($dir.'/js/tiny_mce_popup.js') ?>"></script>
+		<?php if (isset($config['lang'])) : ?>
+		<!-- elFinder translation (OPTIONAL) -->
+		<script src="<?=$package_url . '/js/i18n/elfinder.' . $config['lang'] . '.js' ?>"></script>
+		<?php endif; ?>
 
-    <?php if($locale){ ?>
-        <!-- elFinder translation (OPTIONAL) -->
-        <script src="<?= asset($dir."/js/i18n/elfinder.$locale.js") ?>"></script>
-    <?php } ?>
+		<!-- elFinder initialization (REQUIRED) -->
+		<script type="text/javascript" charset="utf-8">
+			var elFinderInstance, fileBrowserDialogue;
 
+			fileBrowserDialogue = {
+				init: function() {
+					// Here goes your code for setting your custom things onLoad.
+				},
+				mySubmit: function (URL) {
+					var win = tinyMCEPopup.getWindowArg('window');
 
-    <script type="text/javascript">
-        var FileBrowserDialogue = {
-            init: function() {
-                // Here goes your code for setting your custom things onLoad.
-            },
-            mySubmit: function (URL) {
-                var win = tinyMCEPopup.getWindowArg('window');
+					// pass selected file path to TinyMCE
+					win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = URL;
 
-                // pass selected file path to TinyMCE
-                win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = URL;
+					// are we an image browser?
+					if (typeof(win.ImageDialog) != 'undefined') {
+						// update image dimensions
+						if (win.ImageDialog.getImageData) {
+							win.ImageDialog.getImageData();
+						}
 
-                // are we an image browser?
-                if (typeof(win.ImageDialog) != 'undefined') {
-                    // update image dimensions
-                    if (win.ImageDialog.getImageData) {
-                        win.ImageDialog.getImageData();
-                    }
-                    // update preview if necessary
-                    if (win.ImageDialog.showPreviewImage) {
-                        win.ImageDialog.showPreviewImage(URL);
-                    }
-                }
+						// update preview if necessary
+						if (win.ImageDialog.showPreviewImage) {
+							win.ImageDialog.showPreviewImage(URL);
+						}
+					}
 
-                // close popup window
-                tinyMCEPopup.close();
-            }
-        }
+					// close popup window
+					tinyMCEPopup.close();
+				}
+			}
 
-        tinyMCEPopup.onInit.add(FileBrowserDialogue.init, FileBrowserDialogue);
+			tinyMCEPopup.onInit.add(fileBrowserDialogue.init, fileBrowserDialogue);
 
-        $().ready(function() {
-            var elf = $('#elfinder').elfinder({
-                // set your elFinder options here
-                <?php if($locale){ ?>
-                    lang: '<?= $locale ?>', // locale
-                <?php } ?>
-                url : '<?= URL::action('W3G\MediaManager\MediaManagerController@connector') ?>',  // connector URL
-				customData: {
-                    _token: '<?= csrf_token() ?>'
-                },
-                customHeaders: {
-                    'X-CSRF-Token': '<?= csrf_token() ?>'
-                },
-                requestType: 'post',
-                getFileCallback: function(file) { // editor callback
-                    FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
-                }
-            }).elfinder('instance');
-        });
-    </script>
+			$(function() {
+				var config;
 
-</head>
-<body>
+				config = <?= json_encode($config) ?>;
 
-<!-- Element where elFinder will be created (REQUIRED) -->
-<div id="elfinder"></div>
+				config.getFileCallback = function(file) {
+					fileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
+				};
 
-</body>
+				// Documentation for client options:
+				// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+				elFinderInstance = $('#elfinder').elfinder(config).elfinder('instance');
+			});
+		</script>
+	</head>
+	<body>
+
+		<!-- Element where elFinder will be created (REQUIRED) -->
+		<div id="elfinder"></div>
+
+	</body>
 </html>

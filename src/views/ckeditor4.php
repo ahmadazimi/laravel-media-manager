@@ -1,62 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>elFinder 2.0</title>
+	<head>
+		<meta charset="utf-8">
+		<title>Laravel Media Manager (ckeditor4) based on elFinder 2.1</title>
 
-    <!-- jQuery and jQuery UI (REQUIRED) -->
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+		<!-- jQuery and jQuery UI (REQUIRED) -->
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
-    <!-- elFinder CSS (REQUIRED) -->
-    <link rel="stylesheet" type="text/css" href="<?= asset($dir.'/css/elfinder.min.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?= asset($dir.'/css/theme.css') ?>">
+		<!-- elFinder CSS (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" href="<?=$package_url . '/css/elfinder.min.css' ?>">
+		<link rel="stylesheet" type="text/css" href="<?=$package_url . '/css/theme.css' ?>">
 
-    <!-- elFinder JS (REQUIRED) -->
-    <script src="<?= asset($dir.'/js/elfinder.min.js') ?>"></script>
+		<!-- elFinder JS (REQUIRED) -->
+		<script src="<?=$package_url . '/js/elfinder.min.js' ?>"></script>
 
-    <?php if($locale){ ?>
-        <!-- elFinder translation (OPTIONAL) -->
-        <script src="<?= asset($dir."/js/i18n/elfinder.$locale.js") ?>"></script>
-    <?php } ?>
-    
-    <!-- elFinder initialization (REQUIRED) -->
-    <script type="text/javascript" charset="utf-8">
-        // Helper function to get parameters from the query string.
-        function getUrlParam(paramName) {
-            var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
-            var match = window.location.search.match(reParam) ;
+		<?php if (isset($config['lang'])) : ?>
+		<!-- elFinder translation (OPTIONAL) -->
+		<script src="<?=$package_url . '/js/i18n/elfinder.' . $config['lang'] . '.js' ?>"></script>
+		<?php endif; ?>
 
-            return (match && match.length > 1) ? match[1] : '' ;
-        }
+		<!-- elFinder initialization (REQUIRED) -->
+		<script type="text/javascript" charset="utf-8">
+			var elFinderInstance;
 
-        $().ready(function() {
-            var funcNum = getUrlParam('CKEditorFuncNum');
+			// Helper function to get parameters from the query string.
+			function getUrlParam(name) {
+				var regex, match;
 
-            var elf = $('#elfinder').elfinder({
-                // set your elFinder options here
-                <?php if($locale){ ?>
-                    lang: '<?= $locale ?>', // locale
-                <?php } ?>
-                url : '<?= URL::action('W3G\MediaManager\MediaManagerController@connector') ?>',  // connector URL
-				customData: {
-                    _token: '<?= csrf_token() ?>'
-                },
-                customHeaders: {
-                    'X-CSRF-Token': '<?= csrf_token() ?>'
-                },
-                requestType: 'post',
-                getFileCallback : function(file) {
-                    window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
-                    window.close();
-                }
-            }).elfinder('instance');
-        });
-    </script>
-</head>
-<body>
-    <!-- Element where elFinder will be created (REQUIRED) -->
-    <div id="elfinder"></div>
-</body>
+				regex = new RegExp('(?:[\?&]|&amp;)' + name + '=([^&]+)', 'i') ;
+				match = window.location.search.match(regex) ;
+
+				return (match && match.length > 1) ? match[1] : '';
+			}
+
+			$(function() {
+				var config, funcNum;
+
+				funcNum = getUrlParam('CKEditorFuncNum');
+				config = <?= json_encode($config) ?>;
+
+				config.getFileCallback = function(file) {
+					window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
+					window.close();
+				};
+
+				// Documentation for client options:
+				// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+				elFinderInstance = $('#elfinder').elfinder(config).elfinder('instance');
+			});
+		</script>
+	</head>
+	<body>
+
+		<!-- Element where elFinder will be created (REQUIRED) -->
+		<div id="elfinder"></div>
+
+	</body>
 </html>
