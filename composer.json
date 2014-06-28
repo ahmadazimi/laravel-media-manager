@@ -4,7 +4,7 @@
 	"version": "1.0.1",
 	"keywords": ["laravel", "elfinder", "uploader", "media-manager", "file-manager"],
 	"homepage": "https://github.com/ahmadazimi/laravel-media-manager",
-	"time": "2012-06-25",
+	"time": "2012-06-28",
 	"license": "MIT",
 	
 	"repositories": {
