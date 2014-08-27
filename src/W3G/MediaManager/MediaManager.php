@@ -94,7 +94,7 @@ class MediaManager {
 		}
 
 		if(!isset($config['url']) || !$config['url']) {
-			$config['url'] = URL::action($connector_action || 'W3G\MediaManager\MediaManagerController@connector');
+			$config['url'] = \URL::action($connector_action || 'W3G\MediaManager\MediaManagerController@connector');
 		}
 
 		return $config;
